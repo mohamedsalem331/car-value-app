@@ -30,7 +30,7 @@ export class AuthController {
   findUser(@Param('id') id: string) {
     return this.authService.findUserById(parseInt(id))
   }
-
+  //test
   @Get()
   findAll(
     @Query('email')

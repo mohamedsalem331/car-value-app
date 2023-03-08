@@ -8,12 +8,14 @@ import {
   Param,
   Query,
 } from '@nestjs/common/decorators/http/route-params.decorator'
-import { SerializeInterceptor } from 'src/interceptors/serialize.interceptor'
+import { Serialize } from 'src/interceptors/serialize.interceptor'
 import { AuthService } from './auth.service'
 import { CreateUserDto } from './dtos/auth.dto'
 import { UpdateUserDto } from './dtos/update-user.dto'
+import { UserDto } from './dtos/user.dto'
 
 @Controller('auth')
+@Serialize(UserDto)
 export class AuthController {
   constructor(private authService: AuthService) {}
 
@@ -25,7 +27,6 @@ export class AuthController {
     return this.authService.signUp(body.email, body.password)
   }
 
-  @UseInterceptors(SerializeInterceptor)
   @Get('/:id')
   findUser(@Param('id') id: string) {
     return this.authService.findUserById(parseInt(id))

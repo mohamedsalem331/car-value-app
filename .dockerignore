@@ -1,0 +1,9 @@
+.vscode
+node_modules
+assets
+test
+.env
+.env.development
+.gitignore
+LICENSE
+README.md
